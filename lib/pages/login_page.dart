@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/components/login/button.dart';
 import 'package:movieapp/controllers/login_controller.dart';
+import 'package:movieapp/widgets/custom_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController _controller = LoginController();
@@ -17,61 +19,20 @@ class LoginPage extends StatelessWidget {
               children: [
                 const Icon(Icons.people_rounded,
                     size: 108, color: Colors.indigo),
-                TextField(
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail',
-                    hintText: 'Enter your e-mail',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: _controller.setEmail,
-                ),
+                CustomTextField(
+                    label: 'E-mail',
+                    hint: 'Enter your e-mail',
+                    icon: Icons.email,
+                    onChanged: _controller.setEmail),
                 const SizedBox(height: 24),
-                TextField(
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(),
-                    ),
-                    obscureText: true,
-                    onChanged: _controller.setPassword),
+                CustomTextField(
+                    label: 'Password',
+                    hint: 'Enter your password',
+                    icon: Icons.lock,
+                    onChanged: _controller.setPassword,
+                    obscureText: true),
                 const SizedBox(height: 24),
-                ValueListenableBuilder<bool>(
-                  valueListenable: _controller.loading,
-                  builder: (_, loading, __) => loading
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.indigo,
-                          ),
-                        )
-                      : ElevatedButton(
-                          onPressed: () {
-                            _controller.auth().then((value) {
-                              if (value) {
-                                Navigator.pushReplacementNamed(
-                                    context, '/home');
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Login failed'),
-                                    backgroundColor: Colors.red,
-                                    duration: Duration(seconds: 5),
-                                  ),
-                                );
-                              }
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.indigo,
-                            padding: const EdgeInsets.all(24),
-                          ),
-                          child: const Text('Login'),
-                        ),
-                ),
+                LoginButton(loginController: _controller),
               ],
             )));
   }
