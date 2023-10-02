@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/page/login_page.dart';
-import 'package:movieapp/page/splash_page.dart';
+import 'package:movieapp/pages/home_page.dart';
+import 'package:movieapp/pages/login_page.dart';
+import 'package:movieapp/pages/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (_) => const SplashPage(),
-          '/login': (_) => const LoginPage(),
+          '/login': (_) => LoginPage(),
+          '/home': (_) => const HomePage(),
         });
   }
 }
