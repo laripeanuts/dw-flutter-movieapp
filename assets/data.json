@@ -1,0 +1,72 @@
+[
+  {
+    "id": "movie-2000-01",
+    "title": "Crouching Tiger, Hidden Dragon",
+    "description": "A martial arts master must protect a powerful sword from falling into the wrong hands.",
+    "year": 2000,
+    "director": "Ang Lee"
+  },
+  {
+    "id": "movie-2001-02",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "description": "A hobbit named Frodo is given the task of destroying the One Ring, an evil artifact created by the Dark Lord Sauron.",
+    "year": 2001,
+    "director": "Peter Jackson"
+  },
+  {
+    "id": "movie-2002-03",
+    "title": "Spider-Man",
+    "description": "A teenager named Peter Parker is bitten by a radioactive spider and gains superhuman powers.",
+    "year": 2002,
+    "director": "Sam Raimi"
+  },
+  {
+    "id": "movie-2003-04",
+    "title": "The Matrix",
+    "description": "A computer hacker learns that the world he lives in is actually a computer simulation.",
+    "year": 2003,
+    "director": "The Wachowskis"
+  },
+  {
+    "id": "movie-2004-05",
+    "title": "The Incredibles",
+    "description": "A family of superheroes must come together to save the world from a secret government organization.",
+    "year": 2004,
+    "director": "Brad Bird"
+  },
+  {
+    "id": "movie-2005-06",
+    "title": "Batman Begins",
+    "description": "Bruce Wayne returns to Gotham City to fight crime as Batman.",
+    "year": 2005,
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "movie-2006-07",
+    "title": "The Departed",
+    "description": "Two undercover cops, one working for the mob and the other for the police, battle each other over the course of several years.",
+    "year": 2006,
+    "director": "Martin Scorsese"
+  },
+  {
+    "id": "movie-2007-08",
+    "title": "No Country for Old Men",
+    "description": "A hunter stumbles upon a drug deal gone wrong and becomes a target of a ruthless killer.",
+    "year": 2007,
+    "director": "Joel Coen"
+  },
+  {
+    "id": "movie-2008-09",
+    "title": "The Dark Knight",
+    "description": "Batman and the Gotham City Police Department must stop the Joker, a psychopathic criminal who plans to destroy the city.",
+    "year": 2008,
+    "director": "Christopher Nolan"
+  },
+  {
+    "id": "movie-2009-10",
+    "title": "Avatar",
+    "description": "A paraplegic marine is transported into the body of a genetically engineered Na'vi and sent on a mission to infiltrate the planet of Pandora.",
+    "year": 2009,
+    "director": "James Cameron"
+  }
+]
