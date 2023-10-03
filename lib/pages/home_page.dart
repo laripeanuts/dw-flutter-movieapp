@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/controllers/home_controller.dart';
-import 'package:movieapp/repositories/home_repository_mock.dart';
+import 'package:movieapp/repositories/home_repository_api.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final HomeController _controller = HomeController(HomeRepositoryMock());
+  final HomeController _controller = HomeController(HomeRepositoryApi());
 
   @override
   void initState() {
@@ -21,20 +21,49 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title:
+            const Text('My best movies', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.indigoAccent,
+        actions: [
+          IconButton(
+            onPressed: () {
+              _controller.fetch();
+            },
+            icon: const Icon(Icons.refresh, color: Colors.white),
+          ),
+        ],
+      ),
       body: ValueListenableBuilder(
           valueListenable: _controller.movies,
           builder: (_, list, __) {
-            return ListView.builder(
+            return ListView.separated(
+              shrinkWrap: true,
               itemCount: list.length,
               itemBuilder: (_, index) {
                 final movie = list[index];
                 return ListTile(
-                  title: Text(movie.title),
-                  subtitle: Text(movie.year.toString()),
-                );
+                    leading: Text(movie.id.toString()),
+                    title: Text(movie.title),
+                    subtitle: Text(movie.year.toString()),
+                    trailing: IconButton(
+                      onPressed: () {
+                        _controller.delete(movie);
+                      },
+                      icon: const Icon(Icons.delete),
+                    ));
               },
+              separatorBuilder: (_, __) => const Divider(),
             );
           }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _controller.create();
+        },
+        tooltip: 'Add new movie',
+        backgroundColor: Colors.indigoAccent,
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }

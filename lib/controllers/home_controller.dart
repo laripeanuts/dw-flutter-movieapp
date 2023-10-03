@@ -11,4 +11,13 @@ class HomeController {
   fetch() async {
     movies.value = await _homeRepository.getMovies();
   }
+
+  create() async {
+    print("TODO: Save");
+  }
+
+  delete(MovieModel movie) async {
+    await _homeRepository.deleteMovie(movie);
+    movies.value = await _homeRepository.getMovies();
+  }
 }

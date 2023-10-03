@@ -9,7 +9,12 @@ class HomeRepositoryMock implements HomeRepository {
   Future<List<MovieModel>> getMovies() async {
     var result = await rootBundle.loadString('assets/data.json');
     List moviesJson = jsonDecode(result);
-    print(moviesJson);
     return moviesJson.map((e) => MovieModel.fromJson(e)).toList();
+  }
+
+  @override
+  Future<void> deleteMovie(MovieModel movie) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return;
   }
 }
