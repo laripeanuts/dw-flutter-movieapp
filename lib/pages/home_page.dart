@@ -51,7 +51,11 @@ class _HomePageState extends State<HomePage> {
                         _controller.delete(movie);
                       },
                       icon: const Icon(Icons.delete),
-                    ));
+                    ),
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed('/detail', arguments: movie);
+                    });
               },
               separatorBuilder: (_, __) => const Divider(),
             );
