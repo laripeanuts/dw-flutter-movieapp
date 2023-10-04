@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title:
             const Text('My best movies', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Colors.blue,
         actions: [
           IconButton(
             onPressed: () {
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           _controller.create();
         },
         tooltip: 'Add new movie',
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Colors.blue,
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );

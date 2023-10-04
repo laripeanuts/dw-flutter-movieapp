@@ -21,7 +21,6 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        hintStyle: const TextStyle(color: Colors.grey),
         prefixIcon: Icon(icon),
         border: const OutlineInputBorder(),
       ),

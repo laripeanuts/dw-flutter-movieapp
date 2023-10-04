@@ -12,9 +12,7 @@ class LoginButton extends StatelessWidget {
       valueListenable: loginController.loading,
       builder: (_, loading, __) => loading
           ? const Center(
-              child: CircularProgressIndicator(
-                color: Colors.indigo,
-              ),
+              child: CircularProgressIndicator(),
             )
           : ElevatedButton(
               onPressed: () {
@@ -34,7 +32,7 @@ class LoginButton extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.indigo,
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.all(24),
               ),
               child: const Text('Login'),

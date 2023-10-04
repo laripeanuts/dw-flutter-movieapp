@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
         title: 'Movie App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          useMaterial3: true,
+          brightness: Brightness.dark,
+          primaryColor: Colors.blue,
         ),
         initialRoute: '/',
         routes: {

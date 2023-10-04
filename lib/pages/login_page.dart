@@ -11,14 +11,13 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            color: Colors.indigo.shade100,
             padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Icon(Icons.people_rounded,
-                    size: 108, color: Colors.indigo),
+                const Icon(Icons.movie_creation_rounded,
+                    size: 108, color: Colors.blue),
                 CustomTextField(
                     label: 'E-mail',
                     hint: 'Enter your e-mail',
