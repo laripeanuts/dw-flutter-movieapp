@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/controllers/home_controller.dart';
 import 'package:movieapp/repositories/home_repository_api.dart';
+import 'package:movieapp/services/prefs_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,8 +31,19 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               _controller.fetch();
             },
+            tooltip: 'Refresh',
             icon: const Icon(Icons.refresh, color: Colors.white),
           ),
+          IconButton(
+            onPressed: () {
+              PrefsService.logout();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil('/login', (route) => false);
+            },
+            tooltip: 'Logout',
+            icon: const Icon(Icons.logout, color: Colors.white),
+          ),
+          SizedBox.fromSize(size: const Size(24, 20)),
         ],
       ),
       body: ValueListenableBuilder(
