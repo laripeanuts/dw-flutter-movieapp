@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movieapp/controllers/movies_controller.dart';
 import 'package:movieapp/layout/background_layout.dart';
 import 'package:movieapp/models/movies_model.dart';
@@ -76,8 +77,12 @@ class _HomePageState extends State<HomePage> {
                             ? const Center(
                                 child: Text('No movies found'),
                               )
-                            : const Center(
-                                child: CircularProgressIndicator(),
+                            : Center(
+                                child: Lottie.asset(
+                                  'assets/lotties/movie.json',
+                                  width: 100,
+                                  height: 100,
+                                ),
                               );
                   },
                 ),

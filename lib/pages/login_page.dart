@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movieapp/components/login/button.dart';
 import 'package:movieapp/controllers/login_controller.dart';
 import 'package:movieapp/layout/background_layout.dart';
@@ -17,8 +18,12 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Icon(Icons.movie_creation_rounded,
-                    size: 108, color: Colors.blue),
+                Lottie.asset(
+                  'assets/lotties/movie.json',
+                  width: 200,
+                  height: 200,
+                ),
+                const SizedBox(height: 24),
                 CustomTextField(
                     label: 'E-mail',
                     hint: 'Enter your e-mail',

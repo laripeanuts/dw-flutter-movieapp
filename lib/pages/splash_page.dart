@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movieapp/layout/background_layout.dart';
 import 'package:movieapp/services/prefs_service.dart';
 
@@ -16,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
 
     Future.wait([
       PrefsService.isAuth(),
-      Future.delayed(const Duration(seconds: 1)),
+      Future.delayed(const Duration(seconds: 3)),
     ])
         .then((value) => value.first ? '/home' : '/login')
         .then((route) => Navigator.of(context).pushReplacementNamed(route));
@@ -24,10 +25,12 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const BackgroundLayout(
+    return BackgroundLayout(
       child: Center(
-        child: CircularProgressIndicator(
-          color: Colors.white,
+        child: Lottie.asset(
+          'assets/lotties/movie.json',
+          width: 200,
+          height: 200,
         ),
       ),
     );
