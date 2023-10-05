@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/components/login/button.dart';
 import 'package:movieapp/controllers/login_controller.dart';
+import 'package:movieapp/layout/background_layout.dart';
 import 'package:movieapp/widgets/custom_text_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,8 +10,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
+    return BackgroundLayout(
+        child: Container(
             padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

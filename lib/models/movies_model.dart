@@ -30,7 +30,7 @@ class Movies {
   late final int page;
   late final String posterPath;
   late final bool public;
-  late final List<MovieDetailsModel> listMovies;
+  late final List<Movie> listMovies;
   late final int revenue;
   late final int runtime;
   late final String sortBy;
@@ -50,9 +50,8 @@ class Movies {
       page: json['page'] as int,
       posterPath: json['poster_path'],
       public: json['public'] as bool,
-      listMovies: List.from(json['results'])
-          .map((e) => MovieDetailsModel.fromJson(e))
-          .toList(),
+      listMovies:
+          List.from(json['results']).map((e) => Movie.fromJson(e)).toList(),
       revenue: json['revenue'] as int,
       runtime: json['runtime'] as int,
       sortBy: json['sort_by'],
@@ -85,8 +84,8 @@ class Movies {
   }
 }
 
-class MovieDetailsModel {
-  MovieDetailsModel({
+class Movie {
+  Movie({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -125,7 +124,7 @@ class MovieDetailsModel {
     return 'MovieDetailsEModel(adult: $adult, backdropPath: $backdropPath, genreIds: $genreIds, id: $id, mediaType: $mediaType, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, releaseDate: $releaseDate, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
-  MovieDetailsModel.fromJson(Map<String, dynamic> json) {
+  Movie.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
@@ -202,15 +201,13 @@ class MoviesRecommendations {
     required this.totalResults,
   });
   late final int page;
-  late final List<MovieDetailsModel> results;
+  late final List<Movie> results;
   late final int totalPages;
   late final int totalResults;
 
   MoviesRecommendations.fromJson(Map<String, dynamic> json) {
     page = json['page'];
-    results = List.from(json['results'])
-        .map((e) => MovieDetailsModel.fromJson(e))
-        .toList();
+    results = List.from(json['results']).map((e) => Movie.fromJson(e)).toList();
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
