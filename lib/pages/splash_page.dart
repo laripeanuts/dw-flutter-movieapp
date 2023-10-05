@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/layout/background_layout.dart';
 import 'package:movieapp/services/prefs_service.dart';
 
 class SplashPage extends StatefulWidget {
@@ -23,9 +24,8 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueAccent,
-      child: const Center(
+    return const BackgroundLayout(
+      child: Center(
         child: CircularProgressIndicator(
           color: Colors.white,
         ),
