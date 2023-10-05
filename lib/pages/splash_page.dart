@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashPage> {
       color: Colors.blueAccent,
       child: const Center(
         child: CircularProgressIndicator(
-          color: Colors.blue,
+          color: Colors.white,
         ),
       ),
     );
