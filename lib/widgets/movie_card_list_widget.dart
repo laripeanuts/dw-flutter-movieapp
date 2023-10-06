@@ -24,14 +24,31 @@ class MovieCardListWidget extends StatelessWidget {
             );
           },
           child: Container(
-            height: 160,
+            height: 150,
             decoration: const BoxDecoration(
               color: Colors.black54,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.network(API.REQUEST_IMG(movie.posterPath)),
+                Image.network(
+                  API.REQUEST_IMG(movie.posterPath),
+                  fit: BoxFit.cover,
+                  width: 100,
+                  loadingBuilder: (_, image, progress) {
+                    if (progress == null) {
+                      return image;
+                    } else {
+                      return Container(
+                        alignment: Alignment.center,
+                        transformAlignment: Alignment.center,
+                        color: const Color.fromARGB(255, 89, 96, 100),
+                        width: 100,
+                        child: const CircularProgressIndicator.adaptive(),
+                      );
+                    }
+                  },
+                ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
