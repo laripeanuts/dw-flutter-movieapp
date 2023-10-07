@@ -68,20 +68,28 @@ class MovieCardListWidget extends StatelessWidget {
                         ),
                         const Spacer(),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(Icons.people),
-                            const SizedBox(width: 5),
                             Text(
-                              movie.popularity.toString(),
+                              "#${movie.id}",
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
-                            const SizedBox(width: 10),
-                            const Icon(Icons.star),
-                            const SizedBox(width: 5),
-                            Text(
-                              movie.voteAverage.toString(),
-                              style: Theme.of(context).textTheme.labelSmall,
+                            Row(
+                              children: [
+                                const Icon(Icons.people),
+                                const SizedBox(width: 5),
+                                Text(
+                                  movie.popularity.toString(),
+                                  style: Theme.of(context).textTheme.labelSmall,
+                                ),
+                                const SizedBox(width: 10),
+                                const Icon(Icons.star),
+                                const SizedBox(width: 5),
+                                Text(
+                                  movie.voteAverage.toString(),
+                                  style: Theme.of(context).textTheme.labelSmall,
+                                ),
+                              ],
                             ),
                           ],
                         ),

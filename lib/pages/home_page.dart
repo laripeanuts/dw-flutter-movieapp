@@ -25,65 +25,85 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BackgroundLayout(
+      appBar: AppBar(
+        title: const Row(
+          children: [
+            SizedBox(width: 10),
+            Text('Movies random list'),
+          ],
+        ),
+        surfaceTintColor: Colors.white,
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            onPressed: () {
+              PrefsService.logout();
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/login', (route) => false);
+            },
+            icon: const Icon(Icons.logout),
+          ),
+          const SizedBox(width: 24)
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(24, 40, 24, 24),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Movies',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      PrefsService.logout();
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, '/login', (route) => false);
-                    },
-                    child: const Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox.fromSize(
-                size: const Size.fromHeight(16),
-              ),
               ValueListenableBuilder<Movies?>(
                 valueListenable: _moviesController.movies,
                 builder: (_, movies, __) {
                   final hasMovies = movies?.listMovies != null;
                   return hasMovies
-                      ? ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: movies!.listMovies.length,
-                          itemBuilder: (_, index) {
-                            final movie = movies.listMovies[index];
-                            return MovieCardListWidget(movie: movie);
-                          },
-                          separatorBuilder: (_, __) => const Divider(
-                            color: Colors.transparent,
-                            height: 20,
-                          ),
-                        )
-                      : hasMovies && movies!.listMovies.isEmpty
-                          ? const Center(
-                              child: Text('No movies found'),
-                            )
-                          : Center(
-                              child: Lottie.asset(
-                                'assets/lotties/movie.json',
-                                width: 100,
-                                height: 100,
+                      ? Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    movies!.name,
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                                const Spacer(),
+                                IconButton(
+                                  onPressed: () {
+                                    _moviesController.fetch();
+                                  },
+                                  icon: const Icon(Icons.refresh),
+                                  tooltip: "New movies list",
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: movies.listMovies.length,
+                              itemBuilder: (_, index) {
+                                final movie = movies.listMovies[index];
+                                return MovieCardListWidget(movie: movie);
+                              },
+                              separatorBuilder: (_, __) => const Divider(
+                                color: Colors.transparent,
+                                height: 20,
                               ),
-                            );
+                            ),
+                          ],
+                        )
+                      : SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          child: Center(
+                            child: Lottie.asset(
+                              'assets/lotties/movie.json',
+                              width: 100,
+                              height: 100,
+                            ),
+                          ));
                 },
               ),
             ],

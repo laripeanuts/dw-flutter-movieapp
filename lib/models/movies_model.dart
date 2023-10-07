@@ -1,7 +1,7 @@
 class Movies {
   Movies({
     required this.averageRating,
-    required this.backdropPath,
+    this.backdropPath,
     required this.createdBy,
     required this.description,
     required this.id,
@@ -20,7 +20,7 @@ class Movies {
   });
 
   late final double averageRating;
-  late final String backdropPath;
+  late final String? backdropPath;
   late final CreatedBy createdBy;
   late final String description;
   late final int id;
@@ -40,7 +40,7 @@ class Movies {
   static Movies fromJson(Map json) {
     return Movies(
       averageRating: json['average_rating'] as double,
-      backdropPath: json['backdrop_path'],
+      backdropPath: json['backdrop_path'] ?? '',
       createdBy: CreatedBy.fromJson(json['created_by']),
       description: json['description'],
       id: json['id'] as int,
@@ -167,19 +167,19 @@ class CreatedBy {
   CreatedBy({
     required this.gravatarHash,
     required this.id,
-    required this.name,
+    this.name,
     required this.username,
   });
 
   late final String gravatarHash;
   late final String id;
-  late final String name;
+  String? name;
   late final String username;
 
   CreatedBy.fromJson(Map json) {
     gravatarHash = json['gravatar_hash'];
     id = json['id'];
-    name = json['name'];
+    name = json['name'] ?? '';
     username = json['username'];
   }
 
