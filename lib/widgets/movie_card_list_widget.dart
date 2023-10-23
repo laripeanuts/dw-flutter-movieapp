@@ -59,7 +59,8 @@ class MovieCardListWidget extends StatelessWidget {
                           movie.title,
                           style: Theme.of(context).textTheme.titleLarge,
                           softWrap: true,
-                          overflow: TextOverflow.visible,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4),
                         Text(
@@ -67,32 +68,77 @@ class MovieCardListWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         const Spacer(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "#${movie.id}",
-                              style: Theme.of(context).textTheme.labelSmall,
-                            ),
-                            Row(
+                        LayoutBuilder(builder:
+                            (BuildContext context, BoxConstraints constraints) {
+                          if (constraints.maxWidth > 200) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Icon(Icons.people),
-                                const SizedBox(width: 5),
                                 Text(
-                                  movie.popularity.toString(),
+                                  "#${movie.id}",
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
-                                const SizedBox(width: 10),
-                                const Icon(Icons.star),
-                                const SizedBox(width: 5),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.people),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      movie.popularity.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    const Icon(Icons.star),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      movie.voteAverage.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else if (constraints.maxWidth > 150) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.people),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      movie.popularity.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    const Icon(Icons.star),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      movie.voteAverage.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Column(
+                              children: [
                                 Text(
-                                  movie.voteAverage.toString(),
+                                  "#${movie.id}",
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
                               ],
-                            ),
-                          ],
-                        ),
+                            );
+                          }
+                        }),
                       ],
                     ),
                   ),

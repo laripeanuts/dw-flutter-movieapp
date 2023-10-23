@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 40, 24, 24),
+        padding: const EdgeInsets.all(24),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,6 +77,17 @@ class _HomePageState extends State<HomePage> {
                                   tooltip: "New movies list",
                                 ),
                               ],
+                            ),
+                            const SizedBox(height: 12),
+                            TextField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.search),
+                                border: OutlineInputBorder(),
+                                labelText: 'Search',
+                              ),
+                              onChanged: (value) {
+                                _moviesController.searchOnChange(value);
+                              },
                             ),
                             const SizedBox(height: 20),
                             ListView.separated(

@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:movieapp/services/dio_service.dart';
 
-abstract class DioServiceApi implements DioService {
-  final String token = '';
+class DioServiceApi implements DioService {
+  final String token =
+      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYzRkM2IxMzIyN2M1OWYwNzNlNTgyNGI3OTUyYWQyOCIsInN1YiI6IjU0NmMyMGVhOTI1MTQxMzA1NjAwMDg2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._tOnHDF5lJdySRPnreula100NvXLB1IymKGqJpG6GGY';
 
   late Dio _dio;
   @override

@@ -10,6 +10,7 @@ class MoviesController {
   }
 
   ValueNotifier<Movies?> movies = ValueNotifier<Movies?>(null);
+  Movies? _cachedMovies;
 
   Future<Movies> fetch({
     int? listID,
@@ -19,7 +20,16 @@ class MoviesController {
       listID: listID ?? Numbers.randomNumber(),
       page: page ?? 1,
     );
-
+    _cachedMovies = movies.value;
     return movies.value!;
+  }
+
+  searchOnChange(String value) {
+    List<Movie> list = _cachedMovies!.listMovies
+        .where((movie) =>
+            movie.toString().toLowerCase().toLowerCase().contains(value))
+        .toList();
+
+    movies.value = movies.value!.copyWith(listMovies: list);
   }
 }
