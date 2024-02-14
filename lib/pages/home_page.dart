@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movieapp/controllers/movies_controller.dart';
+import 'package:movieapp/decorators/movies-repository-decorator.dart';
 import 'package:movieapp/layout/background_layout.dart';
 import 'package:movieapp/models/movies_model.dart';
 import 'package:movieapp/repositories/movies_repository_api.dart';
@@ -17,8 +18,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final MoviesController _moviesController = MoviesController(
-    MoviesRepositoryApi(
-      DioServiceApi(),
+    MoviesRepositoryDecorator(
+      MoviesRepositoryApi(
+        DioServiceApi(),
+      ),
     ),
   );
 
@@ -115,6 +118,16 @@ class _HomePageState extends State<HomePage> {
                               height: 100,
                             ),
                           ));
+                },
+              ),
+              ValueListenableBuilder<bool>(
+                valueListenable: _moviesController.loading,
+                builder: (_, loading, __) {
+                  return loading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const SizedBox.shrink();
                 },
               ),
             ],

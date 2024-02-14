@@ -9,6 +9,7 @@ class MoviesController {
     fetch();
   }
 
+  ValueNotifier<bool> loading = ValueNotifier<bool>(false);
   ValueNotifier<Movies?> movies = ValueNotifier<Movies?>(null);
   Movies? _cachedMovies;
 
@@ -16,11 +17,13 @@ class MoviesController {
     int? listID,
     int? page,
   }) async {
+    loading.value = true;
     movies.value = await _moviesRepository.getMovies(
       listID: listID ?? Numbers.randomNumber(),
       page: page ?? 1,
     );
     _cachedMovies = movies.value;
+    loading.value = false;
     return movies.value!;
   }
 
